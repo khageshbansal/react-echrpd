@@ -42,9 +42,14 @@ export default function List() {
 
   return (
     <>
+    
+<div  class="d-md-flex">
+
+
       {dummy.map((item) => {
         return <Item item={item} />;
       })}
+      </div>
     </>
   );
 }
