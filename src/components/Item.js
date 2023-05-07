@@ -1,7 +1,14 @@
-import React from 'react';
-
+import React,{useContext} from 'react';
+import {MyContext} from './CartContext'
 
 export default function Item(prop) {
+
+  let itemObj = useContext(MyContext);
+  function HadleAddToCartButton(){
+
+    let curitem = prop.item;
+    itemObj.addItem(curitem);
+  }
   return (
     <>
       
@@ -12,7 +19,7 @@ export default function Item(prop) {
       <div class="card-body">
         <h5 class="card-title">{prop.item.title}</h5>
          <h4 class="card-title price">Price: <span class="price">{prop.item.price}</span></h4>
-         <a href="#" class="btn btn-primary"  onclick="alert('product added')">Add to Cart</a>
+         <a href="#" class="btn btn-primary"  onClick={HadleAddToCartButton}>Add to Cart</a>
       </div>
    </div>
 
