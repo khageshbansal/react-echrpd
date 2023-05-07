@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MyContext } from './CartContext';
+
+  
 import CartModal from './CartModal';
 export default function Navbar(props) {
+  let itemObj = useContext(MyContext);
+  let itemArray = itemObj.items;
+
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -51,7 +57,7 @@ export default function Navbar(props) {
               data-toggle="modal"
               data-target="#exampleModalCenter"
             >
-              Cart
+              Cart {itemArray.length}
             </button>
           </div>
         </div>
