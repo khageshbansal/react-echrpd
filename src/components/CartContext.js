@@ -11,11 +11,11 @@ function ContextProvider(props) {
       setitemState([...itemState, item]);
     },
     removeItem: (id) => {
-      itemState = itemState.filter((item) => item.id != id);
+      setitemState((itemState) => itemState.filter((item) => item.id != id));
     },
     updateItem: (id) => {},
   };
-  // console.log(itemState);
+
   return (
     <>
       <MyContext.Provider value={obj}>{props.children}</MyContext.Provider>

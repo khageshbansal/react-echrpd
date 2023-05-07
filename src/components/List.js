@@ -4,6 +4,7 @@ import Item from './Item';
 export default function List() {
   let dummy = [
     {
+      id:1,
       title: 'Colors',
 
       price: 100,
@@ -13,6 +14,7 @@ export default function List() {
     },
 
     {
+      id:2,
       title: 'Black and white Colors',
 
       price: 50,
@@ -22,6 +24,7 @@ export default function List() {
     },
 
     {
+      id:3,
       title: 'Yellow and Black Colors',
 
       price: 70,
@@ -31,6 +34,7 @@ export default function List() {
     },
 
     {
+      id:4,
       title: 'Blue Color',
 
       price: 100,
