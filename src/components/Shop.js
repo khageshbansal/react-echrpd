@@ -1,11 +1,10 @@
 import React from 'react';
-import Navbar from './Navbar';
+
 import List from './List';
 export default function Shop(props) {
   return (
     <>
-      <Navbar />
-
+     
       <div class="mt-4 p-5 bg-primary text-white rounded">
         <h1 class="text-center">My Store</h1>
       </div>

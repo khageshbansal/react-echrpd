@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { MyContext } from './CartContext';
-
+import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
   
 import CartModal from './CartModal';
 export default function Navbar(props) {
@@ -28,24 +29,18 @@ export default function Navbar(props) {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="home.html">
-                  Home
-                </a>
+            
+                <Link class="nav-link" to="/">Home</Link>
+                  
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="shop.html">
-                  Shop
-                </a>
+              <Link class="nav-link" to="shop">Shop</Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">
-                  About
-                </a>
+              <Link class="nav-link" to="about">About</Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="orders.html">
-                  Orders
-                </a>
+              <Link class="nav-link" to="orders">Orders</Link>
               </li>
             </ul>
 
@@ -64,6 +59,7 @@ export default function Navbar(props) {
       </nav>
 <CartModal/>
 
+<Outlet/>
     </>
   );
 }
