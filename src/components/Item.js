@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { MyContext } from './CartContext';
-
+import { Link } from "react-router-dom";
 export default function Item(prop) {
   let itemObj = useContext(MyContext);
   function HadleAddToCartButton() {
@@ -23,9 +23,16 @@ export default function Item(prop) {
           <h4 class="card-title price">
             Price: <span class="price">{prop.item.price}</span>
           </h4>
+
+          <div class="d-flex flex-wrap justify-content-around">
           <a class="btn btn-primary" onClick={HadleAddToCartButton}>
             Add to Cart
           </a>
+
+          <Link class="btn btn-primary" to= {`/productDetails/${prop.item.id}`}>  View <i class="fas fa-search"></i></Link>
+
+          
+          </div>
         </div>
       </div>
     </>

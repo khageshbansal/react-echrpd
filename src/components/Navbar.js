@@ -42,6 +42,9 @@ export default function Navbar(props) {
               <li class="nav-item">
               <Link class="nav-link" to="orders">Orders</Link>
               </li>
+              <li class="nav-item">
+              <Link class="nav-link" to="contact">Contact Us</Link>
+              </li>
             </ul>
 
             {/* Button trigger modal */}
