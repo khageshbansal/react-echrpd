@@ -9,7 +9,7 @@ export default function Item(prop) {
   }
   return (
     <>
-      <div class="card m-5" id={prop.item.id}>
+      <div class="card m-2" id={prop.item.id}>
         <img
           style={{ height: '250px', width: '250px' }}
           src={prop.item.imageUrl}

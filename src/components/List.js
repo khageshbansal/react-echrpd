@@ -45,37 +45,51 @@ export default function List() {
   // ];
 
   let [products, setProducts] = useState([]);
+  let [isLoading, setIsLoading] = useState(false);
+  let [error, setError] = useState(null);
 
-  async function fetchProducts() {
-    let res = await fetch(
-      'https://dummyjson.com/products?limit=10&select=title,price,thumbnail'
-    );
-    let data = await res.json();
+  React.useEffect(() => {
+    async function fetchProducts() {
+      setIsLoading(true);
+      setError(null);
 
-    var newDummy = data.products.map((item) => {
-      return {
-        id: item.id,
-        title: item.title,
-        price: item.price,
-        imageUrl: item.thumbnail,
-      };
+      try {
+        let res = await fetch(
+          'https://dummyjson.com/products?limit=10&select=title,price,thumbnail'
+        );
+
+        if (!res.ok) throw new Error('Sothing went wrong');
+        let data = await res.json();
+        var newDummy = data.products.map((item) => {
+          return {
+            id: item.id,
+            title: item.title,
+            price: item.price,
+            imageUrl: item.thumbnail,
+          };
+        });
+        await setProducts(newDummy);
+        console.log(newDummy);
+      } catch (er) {
+        setError(er.message);
+      }
+      setIsLoading(false);
+    }
+    fetchProducts();
+  }, []);
+
+  let content = <p>No products Found</p>;
+  if (products.length > 0)
+    content = products.map((item) => {
+      return <Item item={item} />;
     });
-
-    setProducts(newDummy);
-  }
-
-  fetchProducts();
-
-  console.log(products);
+  if (error) content = <p>{error}</p>;
+  if (isLoading) content = <p>.......Loading Pls wait</p>;
   return (
     <>
-   
-      <div class="d-lg-flex flex-wrap">
-        {products.map((item) => {
-          return <Item item={item} />;
-        })}
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-around">{content}</div>
       </div>
-      
     </>
   );
 }
