@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import ProductDetails from './pages/ProductDetails';
 import ContactUs from './pages/ContactUs';
 import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 import { Link } from 'react-router-dom';
 import { ContextProvider } from './components/CartContext';
 
@@ -32,6 +33,7 @@ export default function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/productDetails/:id" element={<ProductDetails />} />
 
               <Route path="*" element={NotFound} />
