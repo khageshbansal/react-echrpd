@@ -7,6 +7,7 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import ProductDetails from './pages/ProductDetails';
 import ContactUs from './pages/ContactUs';
+import SignUp from './pages/SignUp';
 import { Link } from 'react-router-dom';
 import { ContextProvider } from './components/CartContext';
 
@@ -30,6 +31,7 @@ export default function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<ContactUs />} />
+              <Route path="/signup" element={<SignUp />} />
               <Route path="/productDetails/:id" element={<ProductDetails />} />
 
               <Route path="*" element={NotFound} />

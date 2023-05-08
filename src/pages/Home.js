@@ -11,6 +11,9 @@ export default function Home(props) {
         <Link class="btn btn-primary" to="shop">
           Go to Shop
         </Link>
+        <Link class="btn btn-primary" to="signup">
+         SignUp New User
+        </Link>
       </div>
     </>
   );
