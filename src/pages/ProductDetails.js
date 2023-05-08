@@ -15,26 +15,6 @@ export default function ProductDetails(props) {
 
   console.log(data);
 
-  function convertToStars(number) {
-    var rating = parseFloat(number);
-    var fullStar = '<i class="bi bi-star-fill"></i>';
-    var halfStar = '<i class="bi bi-star-half"></i>';
-    var emptyStar = '<i class="fas fa-star fa-search"></i>';
-    var stars = '';
-  
-    for (var i = 1; i <= 5; i++) {
-      if (rating >= i) {
-        stars += fullStar;
-      } else if (rating >= i - 0.5) {
-        stars += halfStar;
-      } else {
-        stars += emptyStar;
-      }
-    }
-    
-    return stars;
-  }
-
   return (
     <>
       <div class="container my-5">
