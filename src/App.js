@@ -4,7 +4,6 @@ import Shop from './components/Shop';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
-import NotFound from './pages/NotFound';
 import ProductDetails from './pages/ProductDetails';
 import ContactUs from './pages/ContactUs';
 import SignUp from './pages/SignUp';
