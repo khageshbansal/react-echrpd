@@ -1,9 +1,9 @@
-import React, { useRef, useState,useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { MyContext as AuthContext}  from '../components/AuthContext';
-
+import React, { useRef, useState, useContext } from 'react';
+import { MyContext as AuthContext } from '../components/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login(props) {
+  let history = useNavigate();
 
   let authobj = useContext(AuthContext);
   let [isLoading, setisLoading] = useState(false);
@@ -40,8 +40,9 @@ export default function Login(props) {
       if (data.error) alert(data.error.message);
       else {
         // console.log(data);
-       authobj.Login(data.idToken);
-      };
+        authobj.Login(data.idToken);
+        history('/shop');
+      }
     });
 
     emailFilled.current.value = '';
@@ -58,7 +59,7 @@ export default function Login(props) {
             <div class="form-group">
               <label for="email">Email address</label>
               <input
-               required
+                required
                 ref={emailFilled}
                 type="email"
                 class="form-control"
@@ -69,8 +70,8 @@ export default function Login(props) {
             <div class="form-group">
               <label for="password">Password</label>
               <input
-              required
-              minLength='6'
+                required
+                minLength="6"
                 ref={passwordFilled}
                 type="password"
                 class="form-control"
@@ -86,7 +87,6 @@ export default function Login(props) {
                 class="btn btn-primary"
               >
                 Login
-
               </button>
             )}
             {isLoading && <p>Sending request</p>}

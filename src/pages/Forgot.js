@@ -1,7 +1,9 @@
 import React, { useRef, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
+
 
 export default function Forgot(props) {
+  let navigate=useNavigate();
   let emailFilled = useRef();
 
   let api = 'AIzaSyBG0YW4TEX79NL8kcrR_BDKVCOocGXULcY';

@@ -1,14 +1,14 @@
 import React, { useRef, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { MyContext as AuthContext } from '../components/AuthContext';
 
 export default function Profile(props) {
+  let navigate = useNavigate();
   let objAuth = useContext(AuthContext);
   let passwordFilled = useRef();
 
   let api = 'AIzaSyBG0YW4TEX79NL8kcrR_BDKVCOocGXULcY';
-
- 
 
   async function postData(url = '', data = {}) {
     const response = await fetch(url, {
@@ -39,11 +39,11 @@ export default function Profile(props) {
       if (data.error) alert(data.error.message);
       else {
         alert('Password Reseted Login again');
+        objAuth.Logout();
+        passwordFilled.current.value = '';
+        navigate('/login');
       }
     });
-
-    passwordFilled.current.value = '';
-    objAuth.Logout();
   }
 
   return (

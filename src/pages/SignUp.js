@@ -1,7 +1,10 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
+
 
 export default function SignUp(props) {
+  let history=useNavigate();
+
   let [isLoading, setisLoading] = useState(false);
   let emailFilled = useRef();
   let passwordFilled = useRef();
@@ -35,6 +38,7 @@ export default function SignUp(props) {
       setisLoading(false);
       if (data.error) alert(data.error.message);
       // console.log(data);
+      history('/login');
     });
 
     emailFilled.current.value = '';

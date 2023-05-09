@@ -2,10 +2,14 @@ import React, { useContext } from 'react';
 import { MyContext } from './CartContext';
 import { MyContext as AuthContext } from './AuthContext';
 import { Outlet } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
+
+
 
 import CartModal from './CartModal';
 export default function Navbar(props) {
+
+  let navigate=useNavigate();
   let itemObj = useContext(MyContext);
   let itemArray = itemObj.items;
 
@@ -91,7 +95,8 @@ export default function Navbar(props) {
                 <button
                   type="button"
                   class="btn btn-primary"
-                  onClick={() => objAuth.Logout()}
+                  onClick={() => {objAuth.Logout();navigate('/')}
+                  }
                 >
                   LogOut
                 </button>
