@@ -56,6 +56,7 @@ export default function SignUp(props) {
             <div class="form-group">
               <label for="email">Email address</label>
               <input
+               required
                 type="email"
                 class="form-control"
                 id="email"
@@ -66,6 +67,8 @@ export default function SignUp(props) {
             <div class="form-group">
               <label for="password">Password</label>
               <input
+              required
+              minLength='6'
                 type="password"
                 class="form-control"
                 id="password"

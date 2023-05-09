@@ -58,6 +58,7 @@ export default function Login(props) {
             <div class="form-group">
               <label for="email">Email address</label>
               <input
+               required
                 ref={emailFilled}
                 type="email"
                 class="form-control"
@@ -68,6 +69,8 @@ export default function Login(props) {
             <div class="form-group">
               <label for="password">Password</label>
               <input
+              required
+              minLength='6'
                 ref={passwordFilled}
                 type="password"
                 class="form-control"

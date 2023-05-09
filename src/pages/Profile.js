@@ -1,10 +1,14 @@
 import React, { useRef, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { MyContext as AuthContext } from '../components/AuthContext';
 
-export default function Forgot(props) {
-  let emailFilled = useRef();
+export default function Profile(props) {
+  let objAuth = useContext(AuthContext);
+  let passwordFilled = useRef();
 
   let api = 'AIzaSyBG0YW4TEX79NL8kcrR_BDKVCOocGXULcY';
+
+ 
 
   async function postData(url = '', data = {}) {
     const response = await fetch(url, {
@@ -20,41 +24,45 @@ export default function Forgot(props) {
   }
 
   async function submitHandler() {
-  
+    console.log(objAuth.token);
     let bodyload = {
-      email: emailFilled.current.value,
-      requestType: 'PASSWORD_RESET',
+      idToken: objAuth.token,
+      password: passwordFilled.current.value,
+      returnSecureToken: true,
     };
 
     await postData(
-      `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${api}`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${api}`,
       bodyload
     ).then((data) => {
       // console.log(data);
       if (data.error) alert(data.error.message);
       else {
-        alert('Password Reset Link has been set to your emaail address');
+        alert('Password Reseted Login again');
       }
     });
 
-    emailFilled.current.value = '';
+    passwordFilled.current.value = '';
+    objAuth.Logout();
   }
 
   return (
     <>
-      <h1>Forgot Password</h1>
+      <h1>Your User Profile</h1>
 
       <div class="container">
         <div class="d-flex justify-content-center align-items-center vh-100">
           <form class="w-25">
             <div class="form-group">
-              <label for="email">Enter Your Registered Email address</label>
+              <label for="password">New Password</label>
               <input
-                ref={emailFilled}
-                type="email"
+                required
+                minLength="6"
+                ref={passwordFilled}
+                type="password"
                 class="form-control"
-                id="email"
-                placeholder="Enter email"
+                id="password"
+                placeholder="Password"
               />
             </div>
 
@@ -63,7 +71,7 @@ export default function Forgot(props) {
               type="button"
               class="btn btn-primary"
             >
-              Submit
+              Change Password
             </button>
           </form>
         </div>
