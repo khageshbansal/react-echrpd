@@ -1,7 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState,useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { MyContext as AuthContext}  from '../components/AuthContext';
+
 
 export default function Login(props) {
+
+  let authobj = useContext(AuthContext);
   let [isLoading, setisLoading] = useState(false);
   let emailFilled = useRef();
   let passwordFilled = useRef();
@@ -34,7 +38,10 @@ export default function Login(props) {
     ).then((data) => {
       setisLoading(false);
       if (data.error) alert(data.error.message);
-      console.log(data);
+      else {
+        // console.log(data);
+       authobj.Login(data.idToken);
+      };
     });
 
     emailFilled.current.value = '';

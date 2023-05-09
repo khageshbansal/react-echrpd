@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { MyContext } from './CartContext';
+import { MyContext as AuthContext}  from './AuthContext';
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
   
@@ -8,6 +9,8 @@ export default function Navbar(props) {
   let itemObj = useContext(MyContext);
   let itemArray = itemObj.items;
 
+  let isLogged = useContext(AuthContext).isLogged;
+  // console.log(isLogged);
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -33,15 +36,15 @@ export default function Navbar(props) {
                 <Link class="nav-link" to="/">Home</Link>
                   
               </li>
-              <li class="nav-item">
+              {isLogged && <li class="nav-item">
               <Link class="nav-link" to="shop">Shop</Link>
-              </li>
+              </li>}
               <li class="nav-item">
               <Link class="nav-link" to="about">About</Link>
               </li>
-              <li class="nav-item">
+              {isLogged && <li class="nav-item">
               <Link class="nav-link" to="orders">Orders</Link>
-              </li>
+              </li>}
               <li class="nav-item">
               <Link class="nav-link" to="contact">Contact Us</Link>
               </li>
@@ -49,14 +52,14 @@ export default function Navbar(props) {
 
             {/* Button trigger modal */}
 
-            <button
+            {isLogged && <button
               type="button"
               class="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModalCenter"
             >
               Cart {itemArray.length}
-            </button>
+            </button>}
           </div>
         </div>
       </nav>

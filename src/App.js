@@ -11,7 +11,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import { Link } from 'react-router-dom';
 import { ContextProvider } from './components/CartContext';
-
+import { AuthProvider } from './components/AuthContext';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -23,6 +23,7 @@ import {
 export default function App() {
   return (
     <>
+    <AuthProvider>
       <ContextProvider>
         <main>
           <BrowserRouter>
@@ -43,6 +44,7 @@ export default function App() {
 
         <Footer />
       </ContextProvider>
+      </AuthProvider>
     </>
   );
 }
