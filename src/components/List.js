@@ -69,7 +69,7 @@ export default function List() {
           };
         });
         await setProducts(newDummy);
-        console.log(newDummy);
+        // console.log(newDummy);
       } catch (er) {
         setError(er.message);
       }
