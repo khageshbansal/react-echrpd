@@ -17,7 +17,7 @@ import store from './redux/store';
 
 export default function App() {
   const isAuthenticated = store.getState().auth.isLogged;
-
+  console.log(isAuthenticated);
   return (
     <Provider store={store}>
       <BrowserRouter>
