@@ -32,28 +32,42 @@ export default function Item(prop) {
         `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBG0YW4TEX79NL8kcrR_BDKVCOocGXULcY   `,
         { idToken: authObj.token }
       );
-
+      
       let currentEmail = emailData.users[0].email;
       let removeSpecialChracters = currentEmail.replace(/[^a-zA-Z0-9]/g, '');
       //     regular expression [^a-zA-Z0-9] means "match any character that is not a letter or a number".
       // The g flag at the end of the regular expression means that the replacement should be done globally
+      
+
 
       let dbInsert = await postData(
-        `https://crudcrud.com/api/7e4ada29e534416f81856109ee2471d3/ecom${removeSpecialChracters}`,
+        `https://react-ecom-7c787-default-rtdb.firebaseio.com/ecom${removeSpecialChracters}.json`,
         curitem
       );
 
-      // console.log(dbInsert);
+      
+     
 
       let res = await fetch(
-        `https://crudcrud.com/api/7e4ada29e534416f81856109ee2471d3/ecom${removeSpecialChracters}`
+        `https://react-ecom-7c787-default-rtdb.firebaseio.com/ecom${removeSpecialChracters}.json`
       );
 
       if (!res.ok) throw new Error('Sothing went wrong');
       let data = await res.json();
 
-    
-      dispatch(addItem(data));
+
+      const loadedItems = [];
+
+      for (const key in data) {
+        loadedItems.push({
+          id: key,
+          imageUrl: data[key].imageUrl,
+          price: data[key].price,
+          title: data[key].title,
+        });
+      }
+    // console.log(loadedItems);
+      dispatch(addItem(loadedItems));
     } catch (er) {
       console.log(er);
     }

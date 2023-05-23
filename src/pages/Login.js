@@ -46,7 +46,7 @@ export default function Login(props) {
       setisLoading(false);
       if (data.error) alert(data.error.message);
       else {
-        console.log(data);
+        // console.log(data);
         dispatch(login(data.idToken));
         history('/shop');
       }

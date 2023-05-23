@@ -27,7 +27,7 @@ export default function Profile(props) {
   }
 
   async function submitHandler() {
-    console.log(objAuth.token);
+    // console.log(objAuth.token);
     let bodyload = {
       idToken: objAuth.token,
       password: passwordFilled.current.value,

@@ -13,7 +13,7 @@ export default function ProductDetails(props) {
     fetchProducts();
   }, []);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

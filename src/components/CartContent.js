@@ -14,10 +14,12 @@ export default function CartContent(props) {
     return <p>Your cart is empty.</p>;
   }
 
+ 
   return (
     <>
       {itemArray.map((item, index) => (
         <tr key={item.id}>
+           
           <td>{index + 1}</td>
           <td>
             <img src={item.imageUrl} style={{ height: '60px' }} alt="Item" />
