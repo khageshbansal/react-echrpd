@@ -1,13 +1,14 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { MyContext } from './CartContext';
-import { MyContext as AuthContext } from './AuthContext';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from './firebase';
+import { login, logout } from '../redux/authSlice'
+import { addItem, removeItem, updateItem } from '../redux/cartSlice'
+import { useSelector ,useDispatch} from 'react-redux';
+
 
 export default function Item(prop) {
-  let authObj = useContext(AuthContext);
-  let itemObj = useContext(MyContext);
+  const dispatch = useDispatch()
+  let authObj = useSelector((state) => state.auth)
+ 
 
   async function postData(url = '', data = {}) {
     const response = await fetch(url, {
@@ -52,7 +53,7 @@ export default function Item(prop) {
       let data = await res.json();
 
     
-      itemObj.addItem(data);
+      dispatch(addItem(data));
     } catch (er) {
       console.log(er);
     }

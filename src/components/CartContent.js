@@ -1,34 +1,34 @@
-import React, { useContext } from 'react';
-import { MyContext } from './CartContext';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeItem } from '../redux/cartSlice';
+
 export default function CartContent(props) {
-  let itemObj = useContext(MyContext);
-  let itemArray = itemObj.items;
+  const dispatch = useDispatch();
+  const itemArray = useSelector((state) => state.cart.items);
 
-  console.log(itemArray)
-  
+  const handleRemoveItem = (itemId) => {
+    dispatch(removeItem(itemId));
+  };
+
+  if (itemArray.length === 0) {
+    return <p>Your cart is empty.</p>;
+  }
+
   return (
-  
     <>
-      {itemArray.map((item) => {
-        return (
-          <tr>
-            <th scope="row">1</th>
-            <td>
-              <img src={item.imageUrl} style={{ height: '60px' }}></img>
-            </td>
-            <td>{item.title}</td>
-            <td>{item.price}</td>
-            {/* <td>${cart[i].cartItem.quantity}</td>
-          <td>${ (cart[i].cartItem.quantity) * (cart[i].price) }</td> */}
-
-            <td>
-              {' '}
-              <button onClick={() => itemObj.removeItem(item.id)}>X</button>
-            </td>
-          </tr>
-        );
-      })}
-      
+      {itemArray.map((item, index) => (
+        <tr key={item.id}>
+          <td>{index + 1}</td>
+          <td>
+            <img src={item.imageUrl} style={{ height: '60px' }} alt="Item" />
+          </td>
+          <td>{item.title}</td>
+          <td>{item.price}</td>
+          <td>
+            <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+          </td>
+        </tr>
+      ))}
     </>
   );
 }

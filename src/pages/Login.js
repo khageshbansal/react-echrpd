@@ -1,11 +1,18 @@
-import React, { useRef, useState, useContext } from 'react';
-import { MyContext as AuthContext } from '../components/AuthContext';
+import React, { useRef, useState } from 'react';
+
 import { Link, useNavigate } from 'react-router-dom';
+import { login, logout } from '../redux/authSlice'
+import { addItem, removeItem, updateItem } from '../redux/cartSlice'
+import { useSelector ,useDispatch} from 'react-redux';
 
 export default function Login(props) {
+
+
+  const dispatch = useDispatch()
+
+
   let history = useNavigate();
 
-  let authobj = useContext(AuthContext);
   let [isLoading, setisLoading] = useState(false);
   let emailFilled = useRef();
   let passwordFilled = useRef();
@@ -39,11 +46,11 @@ export default function Login(props) {
       setisLoading(false);
       if (data.error) alert(data.error.message);
       else {
-        // console.log(data);
-        authobj.Login(data.idToken);
+        console.log(data);
+        dispatch(login(data.idToken));
         history('/shop');
       }
-    });
+    }).catch(err=>console.log(err));
 
     emailFilled.current.value = '';
     passwordFilled.current.value = '';

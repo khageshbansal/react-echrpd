@@ -1,21 +1,22 @@
-import React, { useContext } from 'react';
-import { MyContext } from './CartContext';
-import { MyContext as AuthContext } from './AuthContext';
+import React, {  } from 'react';
+import { useSelector ,useDispatch} from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Link ,useNavigate} from 'react-router-dom';
+import { login, logout } from '../redux/authSlice'
+import { addItem, removeItem, updateItem } from '../redux/cartSlice'
 
 
 
 import CartModal from './CartModal';
 export default function Navbar(props) {
-
+  const dispatch = useDispatch()
   let navigate=useNavigate();
-  let itemObj = useContext(MyContext);
-  let itemArray = itemObj.items;
+  
+  let itemArray = useSelector((state) => state.cart.items)
+  let isLogged = useSelector((state) => state.auth.isLogged);
 
-  let isLogged = useContext(AuthContext).isLogged;
-  let objAuth = useContext(AuthContext);
-  // console.log(isLogged);
+
+  // console.log(itemArray);
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -95,7 +96,7 @@ export default function Navbar(props) {
                 <button
                   type="button"
                   class="btn btn-primary"
-                  onClick={() => {objAuth.Logout();navigate('/')}
+                  onClick={() => {dispatch(logout());navigate('/')}
                   }
                 >
                   LogOut

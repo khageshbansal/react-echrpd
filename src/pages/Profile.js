@@ -1,11 +1,14 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { login, logout } from '../redux/authSlice'
+import { addItem, removeItem, updateItem } from '../redux/cartSlice'
+import { useSelector ,useDispatch} from 'react-redux';
 
-import { MyContext as AuthContext } from '../components/AuthContext';
 
 export default function Profile(props) {
+  const dispatch = useDispatch()
   let navigate = useNavigate();
-  let objAuth = useContext(AuthContext);
+  let objAuth = useSelector((state) => state.auth);
   let passwordFilled = useRef();
 
   let api = 'AIzaSyBG0YW4TEX79NL8kcrR_BDKVCOocGXULcY';
@@ -39,7 +42,7 @@ export default function Profile(props) {
       if (data.error) alert(data.error.message);
       else {
         alert('Password Reseted Login again');
-        objAuth.Logout();
+        dispatch(logout());
         passwordFilled.current.value = '';
         navigate('/login');
       }
